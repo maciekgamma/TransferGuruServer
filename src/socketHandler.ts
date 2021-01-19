@@ -29,6 +29,10 @@ interface ConnectionOfferResponseFromPeerParams {
 	peerData: PeerData;
 }
 
+interface InitialMessage {
+	code: string;
+}
+
 interface ConnectionRequestResponse {
 	errors: Array<string>;
 	succes: boolean;
@@ -91,7 +95,7 @@ const socketHandler = (): SocketHandler => {
 					succes: true,
 					candidatesCode: code
 				};
-
+				console.log("Responding");
 				const remotePeer = sm.getSocketByCode(data.requestedCode);
 				if (!remotePeer) {
 					const failedResponde: ConnectionRequestResponse = {
